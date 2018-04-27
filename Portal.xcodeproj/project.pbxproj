@@ -15,6 +15,7 @@
 		688A29FC2093AF4F00430FBF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A29FB2093AF4F00430FBF /* UIView.swift */; };
 		688A29FE2093B24A00430FBF /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A29FD2093B24A00430FBF /* ARView.swift */; };
 		688A2A002093BA4300430FBF /* ARObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A29FF2093BA4300430FBF /* ARObject.swift */; };
+		688A2A022093C2B800430FBF /* FloatingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2A012093C2B800430FBF /* FloatingPoint.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		688A29FB2093AF4F00430FBF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		688A29FD2093B24A00430FBF /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
 		688A29FF2093BA4300430FBF /* ARObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObject.swift; sourceTree = "<group>"; };
+		688A2A012093C2B800430FBF /* FloatingPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPoint.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				688A29FB2093AF4F00430FBF /* UIView.swift */,
+				688A2A012093C2B800430FBF /* FloatingPoint.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -200,6 +203,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				688A2A022093C2B800430FBF /* FloatingPoint.swift in Sources */,
 				688A29E52093ADE600430FBF /* ViewController.swift in Sources */,
 				688A29FE2093B24A00430FBF /* ARView.swift in Sources */,
 				688A2A002093BA4300430FBF /* ARObject.swift in Sources */,
