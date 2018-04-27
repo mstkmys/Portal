@@ -71,14 +71,14 @@ struct ARObject {
         light.shadowRadius = 200
         light.shadowColor = UIColor.clear
         light.shadowMode = .deferred
-        let constraint = SCNLookAtConstraint(target: topWall)
+        let constraint = SCNLookAtConstraint(target: bottomWall)
         constraint.isGimbalLockEnabled = true
         let lightNode = SCNNode()
         lightNode.light = light
         lightNode.position = SCNVector3.init(0, -(length / 2), 0)
         lightNode.constraints = [constraint]
         // add nodes
-        [lightNode, leftWall, rightWall, topWall, bottomWall, backWall, leftDoorSide, rightDoorSdie].forEach{ node.addChildNode($0) }
+        [leftWall, rightWall, topWall, bottomWall, backWall, leftDoorSide, rightDoorSdie, lightNode].forEach{ node.addChildNode($0) }
         return node
     }
     
