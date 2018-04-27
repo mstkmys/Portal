@@ -14,6 +14,7 @@
 		688A29ED2093ADE700430FBF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 688A29EB2093ADE700430FBF /* LaunchScreen.storyboard */; };
 		688A29FC2093AF4F00430FBF /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A29FB2093AF4F00430FBF /* UIView.swift */; };
 		688A29FE2093B24A00430FBF /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A29FD2093B24A00430FBF /* ARView.swift */; };
+		688A2A002093BA4300430FBF /* ARObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A29FF2093BA4300430FBF /* ARObject.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		688A29EE2093ADE700430FBF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		688A29FB2093AF4F00430FBF /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		688A29FD2093B24A00430FBF /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
+		688A29FF2093BA4300430FBF /* ARObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObject.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		688A29F72093AEBC00430FBF /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				688A29FF2093BA4300430FBF /* ARObject.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 			files = (
 				688A29E52093ADE600430FBF /* ViewController.swift in Sources */,
 				688A29FE2093B24A00430FBF /* ARView.swift in Sources */,
+				688A2A002093BA4300430FBF /* ARObject.swift in Sources */,
 				688A29FC2093AF4F00430FBF /* UIView.swift in Sources */,
 				688A29E12093ADE600430FBF /* AppDelegate.swift in Sources */,
 			);

@@ -10,7 +10,7 @@ import UIKit
 import SceneKit
 import ARKit
 
-class ViewController: UIViewController, ARSCNViewDelegate {
+class ViewController: UIViewController {
     
     private let arView: ARView = {
         let view = ARView(frame: UIScreen.main.bounds)
@@ -25,7 +25,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewDidLoad()
         [arView].forEach{ self.view.addSubview($0) }
         sceneView.delegate = self
-        sceneView.scene = SCNScene(named: "art.scnassets/ship.scn")!
+        setupScene()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -38,8 +38,36 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         super.viewWillDisappear(animated)
         sceneView.session.pause()
     }
+    
+    private func setupScene() {
+        let node = SCNNode()
+        node.position = SCNVector3.init(0, 0, 0)
+        // wall
+        let leftWall = ARObject.createBox(isDoor: false)
+        leftWall.position = SCNVector3.init(-ARObject.length / 2, 0, 0)
+        let rightWall = ARObject.createBox(isDoor: false)
+        rightWall.position = SCNVector3.init(ARObject.length / 2, 0, 0)
+        let topWall = ARObject.createBox(isDoor: false)
+        topWall.position = SCNVector3.init(0, ARObject.length / 2, 0)
+        let bottomWall = ARObject.createBox(isDoor: false)
+        bottomWall.position = SCNVector3.init(0, -ARObject.length / 2, 0)
+        let backWall = ARObject.createBox(isDoor: false)
+        backWall.position = SCNVector3.init(0, 0, -ARObject.length / 2)
+        // door side
+        let leftDoorSide = ARObject.createBox(isDoor: true)
+        leftDoorSide.position = SCNVector3.init(-ARObject.doorLength / 2, 0, ARObject.length / 2)
+        let rightDoorSdie = ARObject.createBox(isDoor: true)
+        rightDoorSdie.position = SCNVector3.init(-ARObject.doorLength / 2, 0, ARObject.length / 2)
+        // add nodes
+        [leftWall, rightWall, topWall, bottomWall, backWall, leftDoorSide, rightDoorSdie].forEach{ node.addChildNode($0) }
+        sceneView.scene.rootNode.addChildNode(node)
+    }
+    
+}
 
-    // MARK: - ARSCNViewDelegate
+// MARK: - ARSCNViewDelegate
+/*******************************************************************************************/
+extension ViewController: ARSCNViewDelegate {
     
     func session(_ session: ARSession, didFailWithError error: Error) {
         // Present an error message to the user
@@ -54,7 +82,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
     
 }
-
 
 
 
