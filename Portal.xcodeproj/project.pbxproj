@@ -16,6 +16,7 @@
 		688A29FE2093B24A00430FBF /* ARView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A29FD2093B24A00430FBF /* ARView.swift */; };
 		688A2A002093BA4300430FBF /* ARObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A29FF2093BA4300430FBF /* ARObject.swift */; };
 		688A2A022093C2B800430FBF /* FloatingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 688A2A012093C2B800430FBF /* FloatingPoint.swift */; };
+		80D4922ED41610DB823E730D /* Pods_Portal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B54269FF67D116493E6012E0 /* Pods_Portal.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,9 @@
 		688A29FD2093B24A00430FBF /* ARView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARView.swift; sourceTree = "<group>"; };
 		688A29FF2093BA4300430FBF /* ARObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARObject.swift; sourceTree = "<group>"; };
 		688A2A012093C2B800430FBF /* FloatingPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPoint.swift; sourceTree = "<group>"; };
+		954504F2B3860E050E5AC0A6 /* Pods-Portal.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Portal.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Portal/Pods-Portal.debug.xcconfig"; sourceTree = "<group>"; };
+		ADE74A8A0B2774ABAAFCCD2F /* Pods-Portal.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Portal.release.xcconfig"; path = "Pods/Target Support Files/Pods-Portal/Pods-Portal.release.xcconfig"; sourceTree = "<group>"; };
+		B54269FF67D116493E6012E0 /* Pods_Portal.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Portal.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80D4922ED41610DB823E730D /* Pods_Portal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2525002EAD209935642DF678 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				954504F2B3860E050E5AC0A6 /* Pods-Portal.debug.xcconfig */,
+				ADE74A8A0B2774ABAAFCCD2F /* Pods-Portal.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		26A049A09E72A7A3EE2D4CB1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B54269FF67D116493E6012E0 /* Pods_Portal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		688A29D42093ADE600430FBF = {
 			isa = PBXGroup;
 			children = (
 				688A29DF2093ADE600430FBF /* Portal */,
 				688A29DE2093ADE600430FBF /* Products */,
+				2525002EAD209935642DF678 /* Pods */,
+				26A049A09E72A7A3EE2D4CB1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -139,9 +163,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 688A29F12093ADE700430FBF /* Build configuration list for PBXNativeTarget "Portal" */;
 			buildPhases = (
+				7B8263124BCB9A22A8AC060B /* [CP] Check Pods Manifest.lock */,
 				688A29D92093ADE600430FBF /* Sources */,
 				688A29DA2093ADE600430FBF /* Frameworks */,
 				688A29DB2093ADE600430FBF /* Resources */,
+				F14270AA6015F0B2B14F8A4D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -197,6 +223,45 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7B8263124BCB9A22A8AC060B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Portal-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F14270AA6015F0B2B14F8A4D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Portal/Pods-Portal-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/youtube-ios-player-helper/youtube_ios_player_helper.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/youtube_ios_player_helper.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Portal/Pods-Portal-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		688A29D92093ADE600430FBF /* Sources */ = {
@@ -342,16 +407,14 @@
 		};
 		688A29F22093ADE700430FBF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 954504F2B3860E050E5AC0A6 /* Pods-Portal.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WDFA67X5D5;
 				INFOPLIST_FILE = Portal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.mstk.Portal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -361,16 +424,14 @@
 		};
 		688A29F32093ADE700430FBF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADE74A8A0B2774ABAAFCCD2F /* Pods-Portal.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WDFA67X5D5;
 				INFOPLIST_FILE = Portal/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.mstk.Portal;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

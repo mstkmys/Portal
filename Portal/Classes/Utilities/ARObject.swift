@@ -15,7 +15,7 @@ struct ARObject {
     private static var width: CGFloat = 0.02
     private static var height: CGFloat = 1.0
     private static var length: CGFloat = 1.0
-    private static var doorLength: CGFloat = 0.35
+    private static var doorLength: CGFloat = 0.0
     
     public static func createBox(isDoor: Bool) -> SCNNode {
         let node = SCNNode()
@@ -53,6 +53,11 @@ struct ARObject {
         let backWall = self.createBox(isDoor: false)
         backWall.position = SCNVector3.init(0, 0, (-length / 2) + width)
         backWall.eulerAngles = SCNVector3.init(0, 90.0.degreesToRadius, 0)
+        
+        // video
+        let videoNode = self.createVideoNode()
+        videoNode.position = SCNVector3.init(0, 0, -0.3)
+        
         // door side
         let leftDoorSide = self.createBox(isDoor: true)
         leftDoorSide.position = SCNVector3.init((-length / 2) + (doorLength / 2), 0, length / 2)
@@ -78,7 +83,27 @@ struct ARObject {
         lightNode.position = SCNVector3.init(0, -(length / 2), 0)
         lightNode.constraints = [constraint]
         // add nodes
-        [leftWall, rightWall, topWall, bottomWall, backWall, leftDoorSide, rightDoorSdie, lightNode].forEach{ node.addChildNode($0) }
+        [leftWall, rightWall, topWall, bottomWall, backWall, leftDoorSide, rightDoorSdie, lightNode, videoNode].forEach{ node.addChildNode($0) }
+        return node
+    }
+    
+    private static func createVideoNode() -> SCNNode {
+        let scene = SKScene()
+        scene.backgroundColor = UIColor.orange.withAlphaComponent(1)
+        scene.size = CGSize(width: 500, height: 500)
+        
+        let bundlePath = Bundle.main.path(forResource: "cute", ofType: "mp4")!
+        let videoPlayer = AVPlayer(url: URL(fileURLWithPath: bundlePath))
+        videoPlayer.play()
+        
+        let videoNode = SKVideoNode(avPlayer: videoPlayer)
+        videoNode.size = scene.size
+        videoNode.position = CGPoint(x: videoNode.size.width / 2, y: videoNode.size.height / 2)
+        videoNode.yScale = -1.0
+        scene.addChild(videoNode)
+        let videoPlane = SCNPlane(width: height, height: height)
+        let node = SCNNode(geometry: videoPlane)
+        node.geometry?.firstMaterial?.diffuse.contents = scene
         return node
     }
     
