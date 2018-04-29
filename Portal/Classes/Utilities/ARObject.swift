@@ -9,6 +9,7 @@
 import UIKit
 import SceneKit
 import ARKit
+import youtube_ios_player_helper
 
 struct ARObject {
     
@@ -53,11 +54,6 @@ struct ARObject {
         let backWall = self.createBox(isDoor: false)
         backWall.position = SCNVector3.init(0, 0, (-length / 2) + width)
         backWall.eulerAngles = SCNVector3.init(0, 90.0.degreesToRadius, 0)
-        
-        // video
-        let videoNode = self.createVideoNode()
-        videoNode.position = SCNVector3.init(0, 0, -0.3)
-        
         // door side
         let leftDoorSide = self.createBox(isDoor: true)
         leftDoorSide.position = SCNVector3.init((-length / 2) + (doorLength / 2), 0, length / 2)
@@ -65,6 +61,9 @@ struct ARObject {
         let rightDoorSdie = self.createBox(isDoor: true)
         rightDoorSdie.position = SCNVector3.init((length / 2) - (doorLength / 2), 0, length / 2)
         rightDoorSdie.eulerAngles = SCNVector3.init(0, -90.0.degreesToRadius, 0)
+        // web node
+        let webNode = self.createWebNode()
+        webNode.position = SCNVector3.init(0, 0, (-length / 2) + width + 0.011)
         // create light
         let light = SCNLight()
         light.type = .spot
@@ -83,28 +82,22 @@ struct ARObject {
         lightNode.position = SCNVector3.init(0, -(length / 2), 0)
         lightNode.constraints = [constraint]
         // add nodes
-        [leftWall, rightWall, topWall, bottomWall, backWall, leftDoorSide, rightDoorSdie, lightNode, videoNode].forEach{ node.addChildNode($0) }
+        [leftWall, rightWall, topWall, bottomWall, backWall, leftDoorSide, rightDoorSdie, lightNode, webNode].forEach{ node.addChildNode($0) }
         return node
     }
     
-    private static func createVideoNode() -> SCNNode {
-        let scene = SKScene()
-        scene.backgroundColor = UIColor.orange.withAlphaComponent(1)
-        scene.size = CGSize(width: 500, height: 500)
-        
-        let bundlePath = Bundle.main.path(forResource: "cute", ofType: "mp4")!
-        let videoPlayer = AVPlayer(url: URL(fileURLWithPath: bundlePath))
-        videoPlayer.play()
-        
-        let videoNode = SKVideoNode(avPlayer: videoPlayer)
-        videoNode.size = scene.size
-        videoNode.position = CGPoint(x: videoNode.size.width / 2, y: videoNode.size.height / 2)
-        videoNode.yScale = -1.0
-        scene.addChild(videoNode)
-        let videoPlane = SCNPlane(width: height, height: height)
-        let node = SCNNode(geometry: videoPlane)
-        node.geometry?.firstMaterial?.diffuse.contents = scene
-        return node
+    private static func createWebNode() -> SCNNode {
+        let webView = YTPlayerView(frame: CGRect(x: 0 , y: 0 , width: 640, height: 480))
+        webView.load(
+            withVideoId: "G6earlGo0b0",
+            playerVars: ["playsinline": 1, "showinfo": 0, "origin": "https://www.youtube.com"]
+        )
+        let webWitdth = length * 0.7
+        let webPlane = SCNPlane(width: webWitdth, height: webWitdth * (9 / 16))
+        webPlane.firstMaterial?.diffuse.contents = webView
+        webPlane.firstMaterial?.isDoubleSided = true
+        let webNode = SCNNode(geometry: webPlane)
+        return webNode
     }
     
 }
