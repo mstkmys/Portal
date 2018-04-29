@@ -16,7 +16,7 @@ struct ARObject {
     private static var width: CGFloat = 0.02
     private static var height: CGFloat = 1.0
     private static var length: CGFloat = 1.0
-    private static var doorLength: CGFloat = 0.0
+    private static var doorLength: CGFloat = 0.4
     
     public static func createBox(isDoor: Bool) -> SCNNode {
         let node = SCNNode()
@@ -87,7 +87,7 @@ struct ARObject {
     }
     
     private static func createWebNode() -> SCNNode {
-        let webView = YTPlayerView(frame: CGRect(x: 0 , y: 0 , width: 640, height: 480))
+        let webView = YTPlayerView(frame: CGRect(x: 0, y: 0, width: 640, height: 480))
         webView.load(
             withVideoId: "G6earlGo0b0",
             playerVars: ["playsinline": 1, "showinfo": 0, "origin": "https://www.youtube.com"]
@@ -95,8 +95,8 @@ struct ARObject {
         let webWitdth = length * 0.7
         let webPlane = SCNPlane(width: webWitdth, height: webWitdth * (9 / 16))
         webPlane.firstMaterial?.diffuse.contents = webView
-        webPlane.firstMaterial?.isDoubleSided = true
         let webNode = SCNNode(geometry: webPlane)
+        webNode.renderingOrder = 200
         return webNode
     }
     
