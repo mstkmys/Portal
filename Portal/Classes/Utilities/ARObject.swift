@@ -65,6 +65,10 @@ struct ARObject {
         let ytNode = self.createYTView()
         ytNode.position = SCNVector3.init((length / 2) - width - 0.011, 0, 0)
         ytNode.eulerAngles = SCNVector3.init(0, -90.0.degreesToRadius, 0)
+        // web node
+        let webNode = self.createWebView()
+        webNode.position = SCNVector3.init((-length / 2) + width + 0.011, 0, 0)
+        webNode.eulerAngles = SCNVector3.init(0, 90.0.degreesToRadius, 0)
         // create light
         let light = SCNLight()
         light.type = .spot
@@ -83,7 +87,7 @@ struct ARObject {
         lightNode.position = SCNVector3.init(0, -(length / 2), 0)
         lightNode.constraints = [constraint]
         // add nodes
-        [leftWall, rightWall, topWall, bottomWall, backWall, leftDoorSide, rightDoorSdie, lightNode, ytNode].forEach{ node.addChildNode($0) }
+        [leftWall, rightWall, topWall, bottomWall, backWall, leftDoorSide, rightDoorSdie, lightNode, ytNode, webNode].forEach{ node.addChildNode($0) }
         return node
     }
     
@@ -96,6 +100,19 @@ struct ARObject {
         let width = length * 0.7
         let plane = SCNPlane(width: width, height: width * (9 / 16))
         plane.firstMaterial?.diffuse.contents = ytView
+        let node = SCNNode(geometry: plane)
+        node.renderingOrder = 200
+        return node
+    }
+    
+    private static func createWebView() -> SCNNode {
+        let view = UIWebView(frame: CGRect(x: 0, y: 0, width: 640, height: 480))
+        let request = URLRequest(url: URL(string: "https://www.youtube.com")!)
+        view.loadRequest(request)
+        let width = length * 0.7
+        let plane = SCNPlane(width: width, height: width * (9 / 16))
+        plane.firstMaterial?.diffuse.contents = view
+        plane.firstMaterial?.isDoubleSided = true
         let node = SCNNode(geometry: plane)
         node.renderingOrder = 200
         return node
