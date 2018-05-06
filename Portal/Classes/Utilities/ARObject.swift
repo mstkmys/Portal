@@ -61,9 +61,10 @@ struct ARObject {
         let rightDoorSdie = self.createBox(isDoor: true)
         rightDoorSdie.position = SCNVector3.init((length / 2) - (doorLength / 2), 0, length / 2)
         rightDoorSdie.eulerAngles = SCNVector3.init(0, -90.0.degreesToRadius, 0)
-        // web node
-        let webNode = self.createWebNode()
-        webNode.position = SCNVector3.init(0, 0, (-length / 2) + width + 0.011)
+        // youtube node
+        let ytNode = self.createYTView()
+        ytNode.position = SCNVector3.init((length / 2) - width - 0.011, 0, 0)
+        ytNode.eulerAngles = SCNVector3.init(0, -90.0.degreesToRadius, 0)
         // create light
         let light = SCNLight()
         light.type = .spot
@@ -82,22 +83,22 @@ struct ARObject {
         lightNode.position = SCNVector3.init(0, -(length / 2), 0)
         lightNode.constraints = [constraint]
         // add nodes
-        [leftWall, rightWall, topWall, bottomWall, backWall, leftDoorSide, rightDoorSdie, lightNode, webNode].forEach{ node.addChildNode($0) }
+        [leftWall, rightWall, topWall, bottomWall, backWall, leftDoorSide, rightDoorSdie, lightNode, ytNode].forEach{ node.addChildNode($0) }
         return node
     }
     
-    private static func createWebNode() -> SCNNode {
-        let webView = YTPlayerView(frame: CGRect(x: 0, y: 0, width: 640, height: 480))
-        webView.load(
-            withVideoId: "G6earlGo0b0",
+    private static func createYTView() -> SCNNode {
+        let ytView = YTPlayerView(frame: CGRect(x: 0, y: 0, width: 640, height: 480))
+        ytView.load(
+            withVideoId: "_hr9e4hxygc",
             playerVars: ["playsinline": 1, "showinfo": 0, "origin": "https://www.youtube.com"]
         )
-        let webWitdth = length * 0.7
-        let webPlane = SCNPlane(width: webWitdth, height: webWitdth * (9 / 16))
-        webPlane.firstMaterial?.diffuse.contents = webView
-        let webNode = SCNNode(geometry: webPlane)
-        webNode.renderingOrder = 200
-        return webNode
+        let width = length * 0.7
+        let plane = SCNPlane(width: width, height: width * (9 / 16))
+        plane.firstMaterial?.diffuse.contents = ytView
+        let node = SCNNode(geometry: plane)
+        node.renderingOrder = 200
+        return node
     }
     
 }
